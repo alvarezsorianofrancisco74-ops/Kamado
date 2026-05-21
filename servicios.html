@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>CineKamado – Servicios</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<nav class="navbar" id="mainNav">
+  <a href="index.html" class="logo">CINE<span>KAMADO</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Inicio</a></li><li><a href="sobre.html">Sobre Nosotros</a></li>
+    <li><a href="servicios.html" class="active">Servicios</a></li>
+    <li><a href="galeria.html">Galería</a></li><li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <button class="burger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="page-hero">
+  <div class="ph-bg" style="background-image:url('https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=1600&q=80')"></div>
+  <div class="ph-overlay"></div>
+  <div class="ph-content">
+    <span class="s-label">Lo que ofrecemos</span>
+    <h1>NUESTROS <em>SERVICIOS</em></h1>
+    <p class="breadcrumb"><a href="index.html">Inicio</a> / Servicios</p>
+  </div>
+</section>
+
+<div class="ticker"><div class="ticker-track">
+  <span class="ticker-item">SALA ESTÁNDAR <span>✦</span></span><span class="ticker-item">DOLBY ATMOS <span>✦</span></span><span class="ticker-item">VIP PREMIUM <span>✦</span></span><span class="ticker-item">KAMADOPASS <span>✦</span></span><span class="ticker-item">SALA PRIVADA <span>✦</span></span><span class="ticker-item">CONCESIONES <span>✦</span></span><span class="ticker-item">SALA ESTÁNDAR <span>✦</span></span><span class="ticker-item">DOLBY ATMOS <span>✦</span></span><span class="ticker-item">VIP PREMIUM <span>✦</span></span><span class="ticker-item">KAMADOPASS <span>✦</span></span><span class="ticker-item">SALA PRIVADA <span>✦</span></span><span class="ticker-item">CONCESIONES <span>✦</span></span>
+</div></div>
+
+<section class="section" style="background:var(--bg);">
+  <div class="container">
+    <div class="s-center reveal">
+      <span class="s-label">Elige tu experiencia</span>
+      <h2 class="s-title">SALAS Y <em>EXPERIENCIAS</em></h2>
+      <div class="s-bar center"></div>
+    </div>
+    <div class="servicios-grid">
+      <div class="serv-card reveal" style="transition-delay:.05s">
+        <span class="serv-icon">🎬</span><h3>Sala Estándar</h3>
+        <p>Pantalla de 15 metros con sistema de sonido estéreo 7.1 de alta definición. Asientos ergonómicos y visibilidad perfecta desde cualquier posición.</p>
+        <span class="serv-price">Desde RD$250</span>
+      </div>
+      <div class="serv-card featured reveal" style="transition-delay:.1s">
+        <span class="serv-badge">⭐ Popular</span>
+        <span class="serv-icon">🔊</span><h3>Dolby Atmos</h3>
+        <p>La experiencia de sonido más avanzada del mundo. El audio fluye en tres dimensiones creando una atmósfera completamente inmersiva.</p>
+        <span class="serv-price">Desde RD$450</span>
+      </div>
+      <div class="serv-card reveal" style="transition-delay:.15s">
+        <span class="serv-icon">👑</span><h3>VIP Premium</h3>
+        <p>Butacas reclinables de cuero, mesita personal, servicio en sala, iluminación ambiental y acceso al lounge exclusivo antes y después de la función.</p>
+        <span class="serv-price">Desde RD$800</span>
+      </div>
+      <div class="serv-card reveal" style="transition-delay:.05s">
+        <span class="serv-icon">🍿</span><h3>Concesiones Premium</h3>
+        <p>Palomitas artesanales en 12 sabores, nachos, hot dogs gourmet, wraps, postres y carta completa de bebidas. ¡Combos especiales todos los días!</p>
+        <span class="serv-price">Variedad total</span>
+      </div>
+      <div class="serv-card reveal" style="transition-delay:.1s">
+        <span class="serv-icon">🎂</span><h3>Sala Privada</h3>
+        <p>Reserva toda una sala para cumpleaños, aniversarios o eventos corporativos. Incluye decoración temática y catering personalizado.</p>
+        <span class="serv-price">Cotizar evento</span>
+      </div>
+      <div class="serv-card reveal" style="transition-delay:.15s">
+        <span class="serv-icon">🎟️</span><h3>KamadoPass</h3>
+        <p>Acceso ilimitado todo el mes, 20% de descuento en concesiones, preventas exclusivas y acceso prioritario a estrenos. Sin compromisos anuales.</p>
+        <span class="serv-price">RD$1,200/mes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="s-center reveal">
+      <span class="s-label">Planifica tu visita</span>
+      <h2 class="s-title">HORARIOS DE <em>ATENCIÓN</em></h2>
+      <div class="s-bar center"></div>
+    </div>
+    <div class="horarios-grid">
+      <div class="horario-card reveal"><h4>Lunes – Jueves</h4><p>Primeras: 10:00 AM<br/>Últimas: 10:00 PM<br/>Taquilla: 9:30 AM</p></div>
+      <div class="horario-card reveal"><h4>Viernes</h4><p>Primeras: 10:00 AM<br/>Últimas: 11:30 PM<br/>Taquilla: 9:30 AM</p></div>
+      <div class="horario-card reveal"><h4>Sábado</h4><p>Primeras: 9:00 AM<br/>Últimas: 12:00 AM<br/>Taquilla: 8:30 AM</p></div>
+      <div class="horario-card reveal"><h4>Domingo</h4><p>Primeras: 9:00 AM<br/>Últimas: 11:00 PM<br/>Taquilla: 8:30 AM</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <div><h2 class="reveal">¿LISTO PARA VIVIR<br><em>LA EXPERIENCIA?</em></h2><p class="reveal">Compra en taquilla o contáctanos para reservas especiales.</p></div>
+      <div class="cta-btns reveal"><a href="contacto.html" class="btn-red">Reservar Ahora</a><a href="galeria.html" class="btn-ghost">Ver Galería</a></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div><a href="index.html" class="logo" style="font-size:1.5rem">CINE<span>KAMADO</span></a><p class="f-desc">Donde cada película se convierte en una experiencia que no olvidarás.</p><div class="socials"><a href="https://facebook.com" target="_blank" class="soc">📘</a><a href="https://instagram.com" target="_blank" class="soc">📸</a><a href="https://tiktok.com" target="_blank" class="soc">🎵</a></div></div>
+    <div class="fnav"><h4>Páginas</h4><ul><li><a href="index.html">Inicio</a></li><li><a href="sobre.html">Sobre Nosotros</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="galeria.html">Galería</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+    <div class="fnav"><h4>Info</h4><ul><li><span>📍 Av. Winston Churchill #45</span></li><li><span>Santo Domingo, RD</span></li><li><span>📞 (809) 555-2024</span></li><li><span>✉ info@cinekamado.do</span></li></ul></div>
+  </div>
+  <div class="f-bottom"><p>© 2025 CineKamado — Todos los derechos reservados</p></div>
+</footer>
+<script src="main.js"></script>
+</body></html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>CineKamado – Contacto</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<nav class="navbar" id="mainNav">
+  <a href="index.html" class="logo">CINE<span>KAMADO</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Inicio</a></li><li><a href="sobre.html">Sobre Nosotros</a></li>
+    <li><a href="servicios.html">Servicios</a></li><li><a href="galeria.html">Galería</a></li>
+    <li><a href="contacto.html" class="active">Contacto</a></li>
+  </ul>
+  <button class="burger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="page-hero">
+  <div class="ph-bg" style="background-image:url('https://images.unsplash.com/photo-1574267432553-4b4628081c31?w=1600&q=80')"></div>
+  <div class="ph-overlay"></div>
+  <div class="ph-content">
+    <span class="s-label">Estamos aquí para ti</span>
+    <h1>CONTÁCTANOS</h1>
+    <p class="breadcrumb"><a href="index.html">Inicio</a> / Contacto</p>
+  </div>
+</section>
+
+<div class="ticker"><div class="ticker-track">
+  <span class="ticker-item">ESCRÍBENOS <span>✦</span></span><span class="ticker-item">LLÁMANOS <span>✦</span></span><span class="ticker-item">VISÍTANOS <span>✦</span></span><span class="ticker-item">RESERVAS ESPECIALES <span>✦</span></span><span class="ticker-item">EVENTOS PRIVADOS <span>✦</span></span><span class="ticker-item">CINEKAMADO <span>✦</span></span><span class="ticker-item">ESCRÍBENOS <span>✦</span></span><span class="ticker-item">LLÁMANOS <span>✦</span></span><span class="ticker-item">VISÍTANOS <span>✦</span></span><span class="ticker-item">RESERVAS ESPECIALES <span>✦</span></span><span class="ticker-item">EVENTOS PRIVADOS <span>✦</span></span><span class="ticker-item">CINEKAMADO <span>✦</span></span>
+</div></div>
+
+<section class="section" style="background:var(--bg);">
+  <div class="container">
+    <div class="contacto-grid">
+      <div class="contacto-info reveal">
+        <span class="s-label">Información de Contacto</span>
+        <h2 class="s-title">HABLEMOS SOBRE TU<br><em>PRÓXIMA VISITA</em></h2>
+        <div class="s-bar"></div>
+        <p>¿Tienes preguntas sobre cartelera, quieres reservar sala privada o necesitas más información? Nuestro equipo está aquí para ayudarte.</p>
+        <div class="info-block"><div class="ib-icon">📍</div><div class="ib-text"><strong>Dirección</strong><span>Av. Winston Churchill #45, Piantini<br/>Santo Domingo, República Dominicana</span></div></div>
+        <div class="info-block"><div class="ib-icon">📞</div><div class="ib-text"><strong>Teléfono</strong><span>(809) 555-2024<br/>(809) 555-2025 — Eventos</span></div></div>
+        <div class="info-block"><div class="ib-icon">✉️</div><div class="ib-text"><strong>Correo</strong><span>info@cinekamado.do<br/>eventos@cinekamado.do</span></div></div>
+        <div class="info-block"><div class="ib-icon">🕐</div><div class="ib-text"><strong>Horario Taquilla</strong><span>Lun–Jue: 9:30 AM – 10:30 PM<br/>Vie–Dom: 8:30 AM – 12:30 AM</span></div></div>
+        <div class="map-embed">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.6!2d-69.9312!3d18.4861!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDI5JzEwLjAiTiA2OcKwNTUnNTIuMyJX!5e0!3m2!1ses!2sdo!4v1234567890" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="form-box reveal">
+        <h3>Envíanos un Mensaje</h3>
+        <p class="form-sub">Responderemos en menos de 24 horas en días laborables.</p>
+        <div id="contactFormEl">
+          <div class="form-row">
+            <div class="form-group"><label>Nombre *</label><input type="text" id="cnombre" placeholder="Tu nombre completo"/></div>
+            <div class="form-group"><label>Apellido</label><input type="text" id="capellido" placeholder="Tu apellido"/></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Correo *</label><input type="email" id="cemail" placeholder="correo@ejemplo.com"/></div>
+            <div class="form-group"><label>Teléfono</label><input type="tel" id="ctelefono" placeholder="(809) 000-0000"/></div>
+          </div>
+          <div class="form-group">
+            <label>Motivo</label>
+            <select id="cmotivo">
+              <option value="">Selecciona una opción...</option>
+              <option>Información general</option><option>Reserva de sala privada</option>
+              <option>KamadoPass / Membresías</option><option>Evento corporativo</option>
+              <option>Cumpleaños y celebraciones</option><option>Sugerencias y quejas</option><option>Otro</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Mensaje *</label><textarea id="cmensaje" placeholder="Cuéntanos cómo podemos ayudarte..."></textarea></div>
+          <button class="btn-send" onclick="enviarMensaje()">Enviar Mensaje →</button>
+        </div>
+        <div class="form-success" id="formOk">
+          <div class="fs-icon">✅</div>
+          <h4>¡MENSAJE ENVIADO!</h4>
+          <p>Un miembro de nuestro equipo se comunicará contigo muy pronto.</p>
+          <div style="margin-top:20px"><a href="index.html" class="btn-red">Volver al Inicio</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="s-center reveal">
+      <span class="s-label">Preguntas Frecuentes</span>
+      <h2 class="s-title">¿TIENES <em>DUDAS?</em></h2>
+      <div class="s-bar center"></div>
+    </div>
+    <div class="faq-grid reveal">
+      <div class="faq-card"><h4>¿Puedo comprar entradas en línea?</h4><p>Actualmente las entradas se adquieren en taquilla o por teléfono. Próximamente habilitaremos la compra en línea.</p></div>
+      <div class="faq-card"><h4>¿Aceptan tarjetas de crédito?</h4><p>Sí, aceptamos Visa, Mastercard y American Express, además de efectivo y transferencias bancarias.</p></div>
+      <div class="faq-card"><h4>¿Cuál es la política de menores?</h4><p>Los menores de 13 años deben estar con un adulto. Las películas +18 requieren identificación válida.</p></div>
+      <div class="faq-card"><h4>¿Se permiten alimentos externos?</h4><p>Solo se permiten alimentos adquiridos en nuestras concesiones dentro de las salas de cine.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <div><h2 class="reveal">¿LISTO PARA TU<br><em>PRÓXIMA PELÍCULA?</em></h2><p class="reveal">Visítanos en Av. Winston Churchill #45, Santo Domingo.</p></div>
+      <div class="cta-btns reveal"><a href="index.html" class="btn-red">Ver Cartelera</a><a href="servicios.html" class="btn-ghost">Ver Servicios</a></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div><a href="index.html" class="logo" style="font-size:1.5rem">CINE<span>KAMADO</span></a><p class="f-desc">Donde cada película se convierte en una experiencia que no olvidarás.</p><div class="socials"><a href="https://facebook.com" target="_blank" class="soc">📘</a><a href="https://instagram.com" target="_blank" class="soc">📸</a><a href="https://tiktok.com" target="_blank" class="soc">🎵</a></div></div>
+    <div class="fnav"><h4>Páginas</h4><ul><li><a href="index.html">Inicio</a></li><li><a href="sobre.html">Sobre Nosotros</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="galeria.html">Galería</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+    <div class="fnav"><h4>Info</h4><ul><li><span>📍 Av. Winston Churchill #45</span></li><li><span>Santo Domingo, RD</span></li><li><span>📞 (809) 555-2024</span></li><li><span>✉ info@cinekamado.do</span></li></ul></div>
+  </div>
+  <div class="f-bottom"><p>© 2025 CineKamado — Todos los derechos reservados</p></div>
+</footer>
+<script src="main.js"></script>
+</body></html>

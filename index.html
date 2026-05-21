@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>CineKamado – Inicio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+<style>
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=1800&q=90')center/cover no-repeat;filter:brightness(.18);}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,5,5,.3) 0%,var(--bg) 100%);}
+.hero-vline{position:absolute;top:0;left:50%;width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(232,0,13,.3),transparent);pointer-events:none;}
+.particle{position:absolute;width:2px;height:2px;background:var(--red);border-radius:50%;opacity:0;animation:twink linear infinite;}
+@keyframes twink{0%{opacity:0;transform:translateY(0) scale(1)}50%{opacity:.6}100%{opacity:0;transform:translateY(-50px) scale(.4)}}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 20px;max-width:1100px;}
+.eyebrow{font-family:var(--font-s);font-size:.6rem;letter-spacing:8px;text-transform:uppercase;color:var(--red);display:block;margin-bottom:24px;opacity:0;animation:fadeUp .8s .3s ease forwards;}
+.hero-title{font-family:var(--font-h);line-height:.88;letter-spacing:2px;}
+.ww{overflow:hidden;display:block;}
+.w{display:inline-block;opacity:0;transform:translateY(110%);animation:wordUp .7s ease forwards;}
+.w1{font-size:clamp(4.5rem,13vw,12rem);animation-delay:.4s;}
+.w2{font-size:clamp(4.5rem,13vw,12rem);color:var(--red);text-shadow:0 0 80px rgba(232,0,13,.35);animation-delay:.55s;}
+.w3{font-size:clamp(2.5rem,7vw,6rem);letter-spacing:14px;animation-delay:.7s;}
+@keyframes wordUp{from{opacity:0;transform:translateY(110%)}to{opacity:1;transform:translateY(0)}}
+.hero-sub{font-size:.9rem;line-height:1.85;color:var(--gray);max-width:500px;margin:26px auto 38px;opacity:0;animation:fadeUp .8s 1s ease forwards;}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp .8s 1.15s ease forwards;}
+.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;}
+.scroll-mouse{width:20px;height:32px;border:2px solid var(--gray2);border-radius:10px;position:relative;}
+.scroll-dot{position:absolute;top:4px;left:50%;transform:translateX(-50%);width:3px;height:3px;background:var(--red);border-radius:50%;animation:sdot 2s infinite;}
+@keyframes sdot{0%{top:4px;opacity:1}100%{top:18px;opacity:0}}
+.scroll-txt{font-size:.5rem;letter-spacing:3px;text-transform:uppercase;color:var(--gray2);}
+
+.movies-section{padding:100px 0;background:var(--bg);}
+.movies-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;}
+.movies-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.movie-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:transform .3s,box-shadow .3s;}
+.movie-card:hover{transform:translateY(-10px);box-shadow:0 24px 60px rgba(0,0,0,.9),0 0 0 1px var(--red);}
+.movie-poster{position:relative;height:310px;overflow:hidden;}
+.movie-poster img{width:100%;height:100%;object-fit:cover;transition:transform .5s;filter:saturate(.85);}
+.movie-card:hover .movie-poster img{transform:scale(1.07);}
+.m-badge{position:absolute;top:12px;left:12px;background:var(--red);color:#fff;font-family:var(--font-s);font-size:.56rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 9px;border-radius:3px;}
+.m-rating{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.88);color:var(--gold);font-size:.68rem;font-weight:700;padding:4px 9px;border-radius:3px;backdrop-filter:blur(8px);}
+.m-overlay{position:absolute;inset:0;background:rgba(5,5,5,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;opacity:0;transition:.3s;}
+.movie-card:hover .m-overlay{opacity:1;}
+.btn-buy{padding:11px 26px;background:var(--red);color:#fff;font-family:var(--font-b);font-weight:700;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;border:2px solid var(--red);border-radius:4px;cursor:pointer;transition:.2s;}
+.btn-buy:hover{background:transparent;color:var(--red);}
+.movie-body{padding:15px 16px 18px;}
+.m-genre{font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:5px;display:block;}
+.m-title{font-family:var(--font-s);font-size:.93rem;font-weight:700;color:var(--white);margin-bottom:6px;line-height:1.2;}
+.m-meta{font-size:.7rem;color:var(--gray);display:flex;justify-content:space-between;}
+.m-price{color:var(--white);font-weight:600;}
+
+/* MODAL */
+.modal-ov{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.94);backdrop-filter:blur(14px);align-items:center;justify-content:center;padding:20px;}
+.modal-box{background:#0d0d0d;border:1px solid #1f1f1f;border-radius:12px;width:100%;max-width:520px;overflow:hidden;animation:mIn .35s cubic-bezier(.16,1,.3,1);max-height:92vh;overflow-y:auto;}
+@keyframes mIn{from{opacity:0;transform:translateY(28px) scale(.96)}to{opacity:1;transform:none}}
+.m-head{padding:26px 30px 20px;border-bottom:1px solid #181818;position:relative;background:#111;}
+.m-close{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--gray2);font-size:1.3rem;cursor:pointer;transition:.2s;}
+.m-close:hover{color:var(--white);}
+.m-tag{font-family:var(--font-s);font-size:.54rem;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:6px;display:block;}
+.m-movie{font-family:var(--font-h);font-size:1.7rem;letter-spacing:2px;color:var(--white);}
+.m-meta2{font-size:.72rem;color:var(--gray);margin-top:3px;}
+.m-body{padding:26px 30px 30px;}
+.ml{display:block;font-size:.58rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray);margin-bottom:7px;}
+.mi{width:100%;background:#111;border:1px solid #222;border-radius:6px;padding:10px 13px;color:var(--white);font-family:var(--font-b);font-size:.84rem;outline:none;transition:.2s;}
+.mi:focus{border-color:var(--red);}
+.mi option{background:#111;}
+.mg{margin-bottom:16px;}
+.mr{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.seat-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:5px;margin-bottom:12px;}
+.seat-screen{grid-column:1/-1;text-align:center;font-size:.54rem;letter-spacing:3px;text-transform:uppercase;color:var(--gray2);padding:7px 0 12px;border-bottom:1px solid #181818;margin-bottom:6px;}
+.seat{width:100%;aspect-ratio:1;border:1px solid #252525;border-radius:3px;background:#111;cursor:pointer;transition:.15s;font-size:.48rem;color:var(--gray2);display:flex;align-items:center;justify-content:center;}
+.seat:hover{border-color:var(--red);background:rgba(232,0,13,.12);}
+.seat.sel{background:var(--red);border-color:var(--red);color:#fff;}
+.seat.taken{background:#161616;border-color:#161616;cursor:not-allowed;opacity:.3;}
+.seat-legend{display:flex;gap:14px;margin-bottom:16px;font-size:.6rem;color:var(--gray);}
+.seat-legend span{display:flex;align-items:center;gap:5px;}
+.ldot{width:9px;height:9px;border-radius:2px;}
+.qty-row{display:flex;align-items:center;background:#111;border:1px solid #222;border-radius:6px;overflow:hidden;width:110px;}
+.qty-btn{background:none;border:none;color:var(--red);font-size:1.3rem;padding:8px 14px;cursor:pointer;transition:.2s;}
+.qty-btn:hover{background:rgba(232,0,13,.1);}
+.qty-n{flex:1;text-align:center;color:var(--white);font-weight:700;}
+.total-row{background:rgba(232,0,13,.06);border:1px solid rgba(232,0,13,.18);border-radius:7px;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+.total-row span{font-size:.63rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray);}
+.total-row strong{font-family:var(--font-h);font-size:2rem;color:var(--red);letter-spacing:2px;}
+.m-success{display:none;padding:48px 30px;text-align:center;}
+.s-icon{font-size:3.8rem;margin-bottom:12px;animation:popIn .5s cubic-bezier(.16,1,.3,1);}
+@keyframes popIn{from{transform:scale(0)}to{transform:scale(1)}}
+.s-title2{font-family:var(--font-h);font-size:2.8rem;letter-spacing:3px;color:var(--white);margin-bottom:6px;}
+.s-title2 em{color:var(--red);font-style:normal;}
+.s-code-box{background:#111;border:1px dashed #2a2a2a;border-radius:8px;padding:14px;margin:18px 0;}
+.s-code-lbl{font-size:.56rem;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:5px;}
+.s-code{font-family:var(--font-h);font-size:2rem;letter-spacing:6px;color:var(--red);}
+.s-detail{font-size:.8rem;color:var(--gray);line-height:1.85;margin-bottom:26px;}
+@media(max-width:768px){.movies-grid{grid-template-columns:1fr 1fr;}.movies-head{flex-direction:column;align-items:flex-start;gap:14px;}.mr{grid-template-columns:1fr;}}
+@media(max-width:500px){.movies-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav class="navbar" id="mainNav">
+  <a href="index.html" class="logo">CINE<span>KAMADO</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html" class="active">Inicio</a></li>
+    <li><a href="sobre.html">Sobre Nosotros</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="galeria.html">Galería</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <button class="burger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grad"></div>
+  <div class="hero-vline"></div>
+  <div id="particles"></div>
+  <div class="hero-content animate-in">
+    <span class="eyebrow">✦ &nbsp;La experiencia definitiva del cine&nbsp; ✦</span>
+    <h1 class="hero-title">
+      <span class="ww"><span class="w w1">EL CINE</span></span>
+      <span class="ww"><span class="w w2">NUNCA</span></span>
+      <span class="ww"><span class="w w3">FUE TAN REAL</span></span>
+    </h1>
+    <p class="hero-sub">8 salas · Dolby Atmos · Proyección láser 4K · Butacas premium reclinables. Donde cada frame te arranca del mundo real.</p>
+    <div class="hero-btns">
+      <a href="#cartelera" class="btn-red">🎬 Ver Cartelera</a>
+      <a href="sobre.html" class="btn-ghost">Conócenos →</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-mouse"><div class="scroll-dot"></div></div><span class="scroll-txt">Scroll</span></div>
+</section>
+
+<div class="ticker"><div class="ticker-track">
+  <span class="ticker-item">ESTRENOS 2025 <span>✦</span></span>
+  <span class="ticker-item">THUNDERBOLTS* <span>✦</span></span>
+  <span class="ticker-item">MISSION IMPOSSIBLE 8 <span>✦</span></span>
+  <span class="ticker-item">LILO &amp; STITCH <span>✦</span></span>
+  <span class="ticker-item">THE ACCOUNTANT 2 <span>✦</span></span>
+  <span class="ticker-item">KARATE KID: LEYENDAS <span>✦</span></span>
+  <span class="ticker-item">NOVOCAINE <span>✦</span></span>
+  <span class="ticker-item">ESTRENOS 2025 <span>✦</span></span>
+  <span class="ticker-item">THUNDERBOLTS* <span>✦</span></span>
+  <span class="ticker-item">MISSION IMPOSSIBLE 8 <span>✦</span></span>
+  <span class="ticker-item">LILO &amp; STITCH <span>✦</span></span>
+  <span class="ticker-item">THE ACCOUNTANT 2 <span>✦</span></span>
+  <span class="ticker-item">KARATE KID: LEYENDAS <span>✦</span></span>
+  <span class="ticker-item">NOVOCAINE <span>✦</span></span>
+</div></div>
+
+<section class="movies-section" id="cartelera">
+  <div class="container">
+    <div class="movies-head">
+      <div>
+        <span class="s-label">En cartelera ahora</span>
+        <h2 class="s-title">PELÍCULAS <em>2025</em></h2>
+        <div class="s-bar"></div>
+      </div>
+      <a href="servicios.html" class="btn-ghost">Ver todas →</a>
+    </div>
+    <div class="movies-grid">
+      <div class="movie-card reveal" style="transition-delay:.05s">
+        <div class="movie-poster">
+          <img src="https://images.unsplash.com/photo-1635805737707-575885ab0820?w=400&q=80" alt="Thunderbolts*"/>
+          <span class="m-badge">ESTRENO</span><span class="m-rating">⭐ 8.1</span>
+          <div class="m-overlay">
+            <button class="btn-buy" onclick="abrirModal('Thunderbolts*','Acción · Marvel · 2h 6m',450)">🎟 Comprar Entradas</button>
+            <span style="font-size:.66rem;color:var(--gray)">Sala 3 · Dolby Atmos</span>
+          </div>
+        </div>
+        <div class="movie-body">
+          <span class="m-genre">Acción · Marvel · 2025</span>
+          <p class="m-title">Thunderbolts*</p>
+          <div class="m-meta"><span>2h 6m</span><span class="m-price">RD$450</span></div>
+        </div>
+      </div>
+      <div class="movie-card reveal" style="transition-delay:.1s">
+        <div class="movie-poster">
+          <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80" alt="Mission Impossible 8"/>
+          <span class="m-badge" style="background:#fff;color:#000">HOT 🔥</span><span class="m-rating">⭐ 9.0</span>
+          <div class="m-overlay">
+            <button class="btn-buy" onclick="abrirModal('Mission: Impossible 8','Acción · Thriller · 2h 49m',550)">🎟 Comprar Entradas</button>
+            <span style="font-size:.66rem;color:var(--gray)">Sala 1 · IMAX</span>
+          </div>
+        </div>
+        <div class="movie-body">
+          <span class="m-genre">Acción · Thriller · 2025</span>
+          <p class="m-title">Mission: Impossible 8</p>
+          <div class="m-meta"><span>2h 49m</span><span class="m-price">RD$550</span></div>
+        </div>
+      </div>
+      <div class="movie-card reveal" style="transition-delay:.15s">
+        <div class="movie-poster">
+          <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400&q=80" alt="Lilo &amp; Stitch"/>
+          <span class="m-badge" style="background:var(--gold);color:#000">FAMILIA</span><span class="m-rating">⭐ 7.9</span>
+          <div class="m-overlay">
+            <button class="btn-buy" onclick="abrirModal('Lilo &amp; Stitch','Familia · Disney · 1h 48m',350)">🎟 Comprar Entradas</button>
+            <span style="font-size:.66rem;color:var(--gray)">Sala 5 · Estándar</span>
+          </div>
+        </div>
+        <div class="movie-body">
+          <span class="m-genre">Familia · Disney · 2025</span>
+          <p class="m-title">Lilo &amp; Stitch</p>
+          <div class="m-meta"><span>1h 48m</span><span class="m-price">RD$350</span></div>
+        </div>
+      </div>
+      <div class="movie-card reveal" style="transition-delay:.2s">
+        <div class="movie-poster">
+          <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400&q=80" alt="The Accountant 2"/>
+          <span class="m-badge">NUEVO</span><span class="m-rating">⭐ 8.3</span>
+          <div class="m-overlay">
+            <button class="btn-buy" onclick="abrirModal('The Accountant 2','Acción · Thriller · 2h 15m',350)">🎟 Comprar Entradas</button>
+            <span style="font-size:.66rem;color:var(--gray)">Sala 2 · Dolby</span>
+          </div>
+        </div>
+        <div class="movie-body">
+          <span class="m-genre">Acción · Thriller · 2025</span>
+          <p class="m-title">The Accountant 2</p>
+          <div class="m-meta"><span>2h 15m</span><span class="m-price">RD$350</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-strip">
+  <div class="stat-item reveal"><span class="stat-n">8</span><span class="stat-l">Salas</span></div>
+  <div class="stat-item reveal"><span class="stat-n">4K</span><span class="stat-l">Proyección Láser</span></div>
+  <div class="stat-item reveal"><span class="stat-n">Dolby</span><span class="stat-l">Atmos Sound</span></div>
+  <div class="stat-item reveal"><span class="stat-n">500K+</span><span class="stat-l">Visitantes</span></div>
+</div>
+
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <div>
+        <h2 class="reveal">¿LISTO PARA LA<br><em>EXPERIENCIA?</em></h2>
+        <p class="reveal">Reserva tu sala, únete al KamadoPass o planifica un evento privado.</p>
+      </div>
+      <div class="cta-btns reveal">
+        <a href="contacto.html" class="btn-red">Reservar Ahora</a>
+        <a href="galeria.html" class="btn-ghost">Ver Galería</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <a href="index.html" class="logo" style="font-size:1.5rem">CINE<span>KAMADO</span></a>
+      <p class="f-desc">Donde cada película se convierte en una experiencia que no olvidarás. Santo Domingo, RD.</p>
+      <div class="socials">
+        <a href="https://facebook.com" target="_blank" class="soc">📘</a>
+        <a href="https://instagram.com" target="_blank" class="soc">📸</a>
+        <a href="https://tiktok.com" target="_blank" class="soc">🎵</a>
+      </div>
+    </div>
+    <div class="fnav"><h4>Páginas</h4><ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="sobre.html">Sobre Nosotros</a></li>
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="galeria.html">Galería</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul></div>
+    <div class="fnav"><h4>Info</h4><ul>
+      <li><span>📍 Av. Winston Churchill #45</span></li>
+      <li><span>Santo Domingo, RD</span></li>
+      <li><span>📞 (809) 555-2024</span></li>
+      <li><span>✉ info@cinekamado.do</span></li>
+      <li><span>🕐 10AM – 12AM diario</span></li>
+    </ul></div>
+  </div>
+  <div class="f-bottom"><p>© 2025 CineKamado — Todos los derechos reservados</p></div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-ov" id="modalOv">
+  <div class="modal-box">
+    <div class="m-head">
+      <button class="m-close" onclick="cerrarModal()">✕</button>
+      <span class="m-tag">🎬 Comprar Entradas — CineKamado</span>
+      <div class="m-movie" id="mTitle"></div>
+      <div class="m-meta2" id="mMeta2"></div>
+    </div>
+    <div class="m-body" id="mForm">
+      <div class="mg">
+        <label class="ml">Horario de Función</label>
+        <select class="mi" id="mHorario">
+          <option value="">Selecciona horario...</option>
+          <option>🕑 2:00 PM — Sala 1 (Estándar)</option>
+          <option>🕓 4:30 PM — Sala 3 (Dolby Atmos)</option>
+          <option>🕖 6:00 PM — Sala 5 (Estándar)</option>
+          <option>🕗 7:30 PM — Sala 2 (Dolby Atmos)</option>
+          <option>🕙 9:00 PM — Sala 7 (VIP Premium)</option>
+          <option>🕙 10:30 PM — Sala 4 (Estándar)</option>
+        </select>
+      </div>
+      <div class="mg">
+        <label class="ml">Selecciona tus Asientos</label>
+        <div class="seat-grid" id="seatGrid"><div class="seat-screen">— PANTALLA —</div></div>
+        <div class="seat-legend">
+          <span><div class="ldot" style="background:#1f1f1f;border:1px solid #2a2a2a"></div> Disponible</span>
+          <span><div class="ldot" style="background:var(--red)"></div> Seleccionado</span>
+          <span><div class="ldot" style="background:#161616;opacity:.4"></div> Ocupado</span>
+        </div>
+      </div>
+      <div class="mr">
+        <div class="mg">
+          <label class="ml">Cantidad</label>
+          <div class="qty-row"><button class="qty-btn" onclick="chgQty(-1)">−</button><span class="qty-n" id="mQty">1</span><button class="qty-btn" onclick="chgQty(1)">+</button></div>
+        </div>
+        <div class="mg">
+          <label class="ml">Tipo de Entrada</label>
+          <select class="mi" id="mTipo" onchange="calcTotal()">
+            <option value="350">General — RD$350</option>
+            <option value="250">Estudiante — RD$250</option>
+            <option value="450">Dolby Atmos — RD$450</option>
+            <option value="800">VIP Premium — RD$800</option>
+          </select>
+        </div>
+      </div>
+      <div class="mg">
+        <label class="ml">Tu Nombre Completo</label>
+        <input class="mi" type="text" id="mNombre" placeholder="Ej. Juan Pérez"/>
+      </div>
+      <div class="total-row"><span>Total a Pagar</span><strong id="mTotal">RD$350</strong></div>
+      <button class="btn-red" style="width:100%;justify-content:center;" onclick="confirmar()">Confirmar Compra →</button>
+    </div>
+    <div class="m-success" id="mSuccess">
+      <div class="s-icon">🎉</div>
+      <div class="s-title2">COMPRA <em>EXITOSA</em></div>
+      <div class="s-code-box"><div class="s-code-lbl">Código de Reserva</div><div class="s-code" id="sCod"></div></div>
+      <p class="s-detail" id="sDet"></p>
+      <button class="btn-red" style="justify-content:center;" onclick="cerrarModal()">¡Listo! Disfruta la película 🍿</button>
+    </div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+<script>
+let qty=1,baseP=350,selSeats=[];
+const takenSeats=[3,7,11,18,22,27,35,40,44,2,14,30];
+function buildSeats(){
+  const g=document.getElementById('seatGrid');
+  while(g.children.length>1)g.removeChild(g.lastChild);
+  selSeats=[];
+  ['A','B','C','D','E','F'].forEach((row,ri)=>{
+    for(let c=1;c<=8;c++){
+      const idx=ri*8+c,id=row+c,s=document.createElement('div');
+      s.className='seat'+(takenSeats.includes(idx)?' taken':'');
+      s.textContent=id;s.dataset.id=id;
+      if(!takenSeats.includes(idx)){s.onclick=()=>{if(s.classList.contains('sel')){s.classList.remove('sel');selSeats=selSeats.filter(x=>x!==id);}else{if(selSeats.length>=qty){alert('Ya tienes '+qty+' asiento(s). Aumenta la cantidad.');return;}s.classList.add('sel');selSeats.push(id);}};}
+      g.appendChild(s);
+    }
+  });
+}
+function abrirModal(titulo,meta,precio){
+  document.getElementById('mTitle').textContent=titulo;
+  document.getElementById('mMeta2').textContent=meta;
+  baseP=precio;qty=1;
+  document.getElementById('mQty').textContent='1';
+  document.getElementById('mNombre').value='';
+  document.getElementById('mHorario').value='';
+  document.getElementById('mTipo').value=precio<=350?'350':String(precio);
+  calcTotal();buildSeats();
+  document.getElementById('mForm').style.display='block';
+  document.getElementById('mSuccess').style.display='none';
+  document.getElementById('modalOv').style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function cerrarModal(){document.getElementById('modalOv').style.display='none';document.body.style.overflow='';}
+function chgQty(d){qty=Math.max(1,Math.min(8,qty+d));document.getElementById('mQty').textContent=qty;while(selSeats.length>qty){const l=selSeats.pop();document.querySelector('[data-id="'+l+'"]')?.classList.remove('sel');}calcTotal();}
+function calcTotal(){const p=parseInt(document.getElementById('mTipo').value)||baseP;document.getElementById('mTotal').textContent='RD$'+(p*qty).toLocaleString();}
+function confirmar(){
+  const nombre=document.getElementById('mNombre').value.trim();
+  const horario=document.getElementById('mHorario').value;
+  if(!nombre){alert('Por favor escribe tu nombre.');return;}
+  if(!horario){alert('Por favor selecciona un horario.');return;}
+  if(selSeats.length===0){alert('Por favor selecciona al menos un asiento.');return;}
+  const tipo=document.getElementById('mTipo').options[document.getElementById('mTipo').selectedIndex].text.split('—')[0].trim();
+  const total=document.getElementById('mTotal').textContent;
+  const movie=document.getElementById('mTitle').textContent;
+  const cod='CK'+Math.floor(100000+Math.random()*900000);
+  document.getElementById('sCod').textContent=cod;
+  document.getElementById('sDet').innerHTML=`<strong style="color:#fff">${nombre}</strong>, tu compra está confirmada.<br><br>🎬 <strong style="color:#fff">${movie}</strong><br>🕐 ${horario}<br>💺 Asientos: <strong style="color:#fff">${selSeats.join(', ')}</strong><br>🎟 ${qty} entrada${qty>1?'s':''} (${tipo})<br>💰 Total: <strong style="color:var(--red)">${total}</strong>`;
+  document.getElementById('mForm').style.display='none';
+  document.getElementById('mSuccess').style.display='block';
+}
+document.getElementById('modalOv').addEventListener('click',function(e){if(e.target===this)cerrarModal();});
+</script>
+</body>
+</html>
